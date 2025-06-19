@@ -46,15 +46,15 @@ This project is a part of Summer Internship at IIT Guwahati and is currenty a wo
 
 Drugs
 
-* ChEMBL: <a>https://www.ebi.ac.uk/chembl/explore/drugs/</a>
+* ChEMBL: [https://www.ebi.ac.uk/chembl/explore/drugs/](https://www.ebi.ac.uk/chembl/explore/drugs/)
 
-* ZINC15: <a>https://zinc15.docking.org/substances/subsets/world+in-man+clean/</a>
+* ZINC15: [https://zinc15.docking.org/substances/subsets/world+in-man+clean/](https://zinc15.docking.org/substances/subsets/world+in-man+clean/)
 
 Non-Drugs
 
-* GDB17: <a>https://gdb.unibe.ch/downloads/</a> - Download the GDB17-Set(50 Million) and put it in "Data/negatives/gdb/". As the file is large it is not included in this repository.
+* GDB17: [https://gdb.unibe.ch/downloads/](https://gdb.unibe.ch/downloads/) - Download the GDB17-Set(50 Million) and put it in "Data/negatives/gdb/". As the file is large it is not included in this repository.
 
-* ZINC15: <a>https://zinc15.docking.org/tranches/home/</a>
+* ZINC15: [https://zinc15.docking.org/tranches/home/](https://zinc15.docking.org/tranches/home/)
 
 The dataset generating tasks were performed in ``dataset.ipynb``.
 
