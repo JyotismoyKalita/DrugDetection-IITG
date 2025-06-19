@@ -40,6 +40,56 @@ This project is a part of Summer Internship at IIT Guwahati and is currenty a wo
     └── 🗎 README.md
 ```
 
+## ⚙️ Environment Setup (via Conda)
+
+To replicate this environment, use the included environment.yml file.
+
+✅ Step-by-step:
+Clone the repository:
+
+```bash
+git clone https://github.com/YourUsername/DrugDetection-IITG.git
+cd DrugDetection-IITG
+```
+
+Create the conda environment:
+
+```bash
+conda env create -f environment.yml
+```
+
+Activate the environment:
+
+```bash
+conda activate drug-detection
+```
+
+(Optional) If using Jupyter Notebooks:
+
+```bash
+jupyter notebook
+```
+
+### 📦 Included in the Environment
+
+* Python 3.10
+
+* RDKit (chemical feature extraction)
+
+* Pandas, NumPy (data handling)
+
+* Scikit-learn (modeling)
+
+* tqdm (progress bars)
+
+* Jupyter (optional, for notebooks)
+
+#### ❗ Troubleshooting
+
+If RDKit fails to install: make sure you're using conda, not pip.
+
+This environment uses the conda-forge channel for compatibility.
+
 ## Dataset
 
 ### Sources
@@ -99,7 +149,7 @@ Generating a Combined Dataset of both Drugs and Non-drugs. Assigned target colum
 
 Total Molecules = 5901(Drugs) + 5902(Non-Drugs) = 11803
 
-The molecules of drugs and non-drugs were mixed shuffled and the dataset was saved to ``Dataset/combined/dataset.csv``
+The molecules of drugs and non-drugs were mixed at 1:1 ratio for better compatibility with Logistic Regression and then shuffled and the dataset was saved to ``Dataset/combined/dataset.csv``
 
 #### Final Dataset
 
@@ -121,4 +171,8 @@ The features extracted are:
 
 The final dataset was saved to ``Dataset/final/dataset.csv``
 
-**Shape:** 11803 molecules (_5901 Drugs + 5902 Non-Drugs_) × 2221 features (_7 physicochemical + 2048 ECFP4 + 166 MACCS_)
+**Shape:**
+
+* Rows: 11803 molecules (_5901 Drugs + 5902 Non-Drugs_)
+
+* Columns: 2223 features{ 2221 descriptors (_7 physicochemical + 2048 ECFP4 + 166 MACCS_) + Smiles + Is Drug }

@@ -1,0 +1,10 @@
+name: drug-detection
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pandas
+  - numpy
+  - rdkit
+  - tqdm
+  - ipykernel
