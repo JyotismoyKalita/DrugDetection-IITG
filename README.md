@@ -85,13 +85,13 @@ The dataset generating tasks were performed in ``dataset.ipynb``.
 
 Generating a combined Drug dataset. Total Drugs in combined Drug Dataset = **5901**
 
-The drugs from chembl and zinc were mixed shuffled and the dataset was saved to ``Dataset\positives\dataset.csv``
+The drugs from chembl and zinc were mixed shuffled and the dataset was saved to ``Dataset/positives/dataset.csv``
 
 #### Non-Drug Dataset
 
 Generating a combined Non-Drug Dataset. Total non-drugs in combined Non-drug dataset = **5902**
 
-The drugs from gdb and zinc were mixed shuffled and the dataset was saved to ``Dataset\negatives\dataset.csv``
+The drugs from gdb and zinc were mixed shuffled and the dataset was saved to ``Dataset/negatives/dataset.csv``
 
 #### Combined Dataset
 
@@ -99,7 +99,7 @@ Generating a Combined Dataset of both Drugs and Non-drugs. Assigned target colum
 
 Total Molecules = 5901(Drugs) + 5902(Non-Drugs) = 11803
 
-The molecules of drugs and non-drugs were mixed shuffled and the dataset was saved to ``Dataset\combined\dataset.csv``
+The molecules of drugs and non-drugs were mixed shuffled and the dataset was saved to ``Dataset/combined/dataset.csv``
 
 #### Final Dataset
 
@@ -119,4 +119,5 @@ The features extracted are:
   * EFCP4 (2048-bits)
   * MACCS (166-bits)
 
-The final dataset was saved to ``Dataset\final\dataset.csv``
+The final dataset was saved to ``Dataset/final/dataset.csv``
+**Shape:** 11803 molecules (_5901 Drugs + 5902 Non-Drugs_) × 2221 features (_7 physicochemical + 2048 ECFP4 + 166 MACCS_)
