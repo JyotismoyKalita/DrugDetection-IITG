@@ -120,4 +120,5 @@ The features extracted are:
   * MACCS (166-bits)
 
 The final dataset was saved to ``Dataset/final/dataset.csv``
+
 **Shape:** 11803 molecules (_5901 Drugs + 5902 Non-Drugs_) × 2221 features (_7 physicochemical + 2048 ECFP4 + 166 MACCS_)
