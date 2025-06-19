@@ -1,10 +1,12 @@
-# Drug Detection
+# 💊 Drug Detection
+
+## 📘 Overview
 
 Creating a Logistic-Regression based Drug Detection model using features extracted from SMILES string of molecules.
 
 This project is a part of Summer Internship at IIT Guwahati and is currenty a work in progress.
 
-## Project Structure
+## 🗂️ Project Structure
 
 ```sh
 .
@@ -14,7 +16,7 @@ This project is a part of Summer Internship at IIT Guwahati and is currenty a wo
     │   │   ├── 🗀 chembl/
     │   │   │   └── 🗎 raw_approved_drug_data.csv
     │   │   └── 🗀 zinc/
-    │   │       └── 🗎 word+in-man+clean.csv
+    │   │       └── 🗎 world+in-man+clean.csv
     │   └── 🗀 negatives/
     │       ├── 🗀 gdb/
     │       │   └── 🗎 GDB17.50000000.smi
@@ -42,7 +44,7 @@ This project is a part of Summer Internship at IIT Guwahati and is currenty a wo
 
 ## ⚙️ Environment Setup (via Conda)
 
-To replicate this environment, use the included environment.yml file.
+To replicate this environment, use the included environment.yml file. The environment.yml file can be used to replicate the Python environment via Conda.
 
 ✅ Step-by-step:
 Clone the repository:
@@ -90,9 +92,9 @@ If RDKit fails to install: make sure you're using conda, not pip.
 
 This environment uses the conda-forge channel for compatibility.
 
-## Dataset
+## 📦 Data Preperation
 
-### Sources
+### 🔗 Sources
 
 Drugs
 
@@ -108,7 +110,9 @@ Non-Drugs
 
 The dataset generating tasks were performed in ``dataset.ipynb``.
 
-### Generating Final Dataset
+ ---
+
+### Generating Dataset
 
 **Positive(drug):**
 
@@ -131,33 +135,41 @@ The dataset generating tasks were performed in ``dataset.ipynb``.
   * Location: ``/Data/negatives/zinc/*.smi``
   * "*" => CBCB, CFAC, CGBD, DCBA, DGAB, EABD, EDCA, EGAB.
 
-#### Drug Dataset
+---
+
+#### ✅ Drug Dataset
 
 Generating a combined Drug dataset. Total Drugs in combined Drug Dataset = **5901**
 
-The drugs from chembl and zinc were mixed shuffled and the dataset was saved to ``Dataset/positives/dataset.csv``
+The drugs from ChEMBL and ZINC15 were combined, shuffled, and saved to `Dataset/positives/dataset.csv`.
 
-#### Non-Drug Dataset
+---
+
+#### ❌ Non-Drug Dataset
 
 Generating a combined Non-Drug Dataset. Total non-drugs in combined Non-drug dataset = **5902**
 
-The drugs from gdb and zinc were mixed shuffled and the dataset was saved to ``Dataset/negatives/dataset.csv``
+The non-drugs from GDB17 and ZINC15 were combined, shuffled, and saved to `Dataset/negatives/dataset.csv`.
 
-#### Combined Dataset
+---
+
+#### 🔀 Combined Dataset
 
 Generating a Combined Dataset of both Drugs and Non-drugs. Assigned target column **"Is Drug"** with **0 for non-drugs** and **1 for drugs**.
 
 Total Molecules = 5901(Drugs) + 5902(Non-Drugs) = 11803
 
-The molecules of drugs and non-drugs were mixed at 1:1 ratio for better compatibility with Logistic Regression and then shuffled and the dataset was saved to ``Dataset/combined/dataset.csv``
+The molecules of drugs and non-drugs were mixed at 1:1 ratio for better compatibility with Logistic Regression and then shuffled and the dataset was saved to file ``Dataset/combined/dataset.csv``
 
-#### Final Dataset
+---
+
+#### 🧮 Final Dataset
 
 Preparing the final dataset with numerical features extracted from the SMILES strings.
 
 The features extracted are:
 
-* Physiochemical
+* Physicochemical
   * Molecular Weight
   * clogP
   * TPSA
@@ -166,12 +178,12 @@ The features extracted are:
   * Rotatable Bonds
   * Ring Count
 * Structural
-  * EFCP4 (2048-bits)
+  * ECFP4 (2048-bits)
   * MACCS (166-bits)
 
 The final dataset was saved to ``Dataset/final/dataset.csv``
 
-**Shape:**
+**📏 Shape:**
 
 * Rows: 11803 molecules (_5901 Drugs + 5902 Non-Drugs_)
 
