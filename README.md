@@ -4,7 +4,19 @@
 
 Creating a Logistic-Regression based Drug Detection model using features extracted from SMILES string of molecules.
 
-This project is a part of Summer Internship at IIT Guwahati and is currenty a work in progress.
+This project is a group effort and part of Summer Internship at IIT Guwahati and is currenty a work in progress.
+
+### 👥 Team Members
+
+- **Anwesha Chaudhury**  
+  [GitHub](https://github.com/chan1425) | [LinkedIn](https://www.linkedin.com/in/anwesha-chaudhury-67a050292/)
+
+- **Jyotismoy Kalita**  
+  [GitHub](https://github.com/JyotismoyKalita/) | [LinkedIn](https://www.linkedin.com/in/jyotismoy-kalita/)
+
+- **Sampurna Biswas**  
+  [GitHub](https://github.com/SamPurna023) | [LinkedIn](https://www.linkedin.com/in/sampurna-biswas-7487bb290/)
+
 
 ## 🗂️ Project Structure
 
