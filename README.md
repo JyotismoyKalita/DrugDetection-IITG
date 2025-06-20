@@ -17,7 +17,6 @@ This project is a group effort and part of Summer Internship at IIT Guwahati and
 - **Sampurna Biswas**  
   [GitHub](https://github.com/SamPurna023) | [LinkedIn](https://www.linkedin.com/in/sampurna-biswas-7487bb290/)
 
-
 ## 🗂️ Project Structure
 
 ```sh
@@ -91,17 +90,17 @@ jupyter notebook
 
 ### 📦 Included in the Environment
 
-* Python 3.10
+- Python 3.10
 
-* RDKit (chemical feature extraction)
+- RDKit (chemical feature extraction)
 
-* Pandas, NumPy (data handling)
+- Pandas, NumPy (data handling)
 
-* Scikit-learn (modeling)
+- Scikit-learn (modeling)
 
-* tqdm (progress bars)
+- tqdm (progress bars)
 
-* Jupyter (optional, for notebooks)
+- Jupyter (optional, for notebooks)
 
 #### ❗ Troubleshooting
 
@@ -115,15 +114,15 @@ This environment uses the conda-forge channel for compatibility.
 
 Drugs
 
-* ChEMBL: [https://www.ebi.ac.uk/chembl/explore/drugs/](https://www.ebi.ac.uk/chembl/explore/drugs/)
+- ChEMBL: [https://www.ebi.ac.uk/chembl/explore/drugs/](https://www.ebi.ac.uk/chembl/explore/drugs/)
 
-* ZINC15: [https://zinc15.docking.org/substances/subsets/world+in-man+clean/](https://zinc15.docking.org/substances/subsets/world+in-man+clean/)
+- ZINC15: [https://zinc15.docking.org/substances/subsets/world+in-man+clean/](https://zinc15.docking.org/substances/subsets/world+in-man+clean/)
 
 Non-Drugs
 
-* GDB17: [https://gdb.unibe.ch/downloads/](https://gdb.unibe.ch/downloads/) - Download the GDB17-Set(50 Million) and put it in "Data/negatives/gdb/". As the file is large it is not included in this repository.
+- GDB17: [https://gdb.unibe.ch/downloads/](https://gdb.unibe.ch/downloads/) - Download the GDB17-Set(50 Million) and put it in "Data/negatives/gdb/". As the file is large it is not included in this repository.
 
-* ZINC15: [https://zinc15.docking.org/tranches/home/](https://zinc15.docking.org/tranches/home/)
+- ZINC15: [https://zinc15.docking.org/tranches/home/](https://zinc15.docking.org/tranches/home/)
 
 The dataset generating tasks were performed in ``dataset.ipynb``.
 
@@ -133,24 +132,24 @@ The dataset generating tasks were performed in ``dataset.ipynb``.
 
 **Positive(drug):**
 
-* ChEMBL
-  * Filters: Approved + Small Molecules + Not Withdrawn
-  * Location: ``/Data/positives/chembl/raw_approved_drug_data.csv``
+- ChEMBL
+  - Filters: Approved + Small Molecules + Not Withdrawn
+  - Location: ``/Data/positives/chembl/raw_approved_drug_data.csv``
 
-* ZINC15
-  * Filters: World + In Man + Clean
-  * Location: ``/Data/positives/zinc/world+in-man+clean.csv``
+- ZINC15
+  - Filters: World + In Man + Clean
+  - Location: ``/Data/positives/zinc/world+in-man+clean.csv``
 
 **Negative(non-drug):**
 
-* GDB17 (General Chemically possible Non-Drugs)
-  * Location: ``/Data/negatives/gdb/GDB17.50000000.smi``
-  * To be downloaded from given link in sources.
+- GDB17 (General Chemically possible Non-Drugs)
+  - Location: ``/Data/negatives/gdb/GDB17.50000000.smi``
+  - To be downloaded from given link in sources.
 
-* ZINC15
-  * Filters: Clean + Lead-like
-  * Location: ``/Data/negatives/zinc/*.smi``
-  * "*" => CBCB, CFAC, CGBD, DCBA, DGAB, EABD, EDCA, EGAB.
+- ZINC15
+  - Filters: Clean + Lead-like
+  - Location: ``/Data/negatives/zinc/*.smi``
+  - "*" => CBCB, CFAC, CGBD, DCBA, DGAB, EABD, EDCA, EGAB.
 
 ---
 
@@ -186,60 +185,60 @@ Preparing the final dataset with numerical features extracted from the SMILES st
 
 The features extracted are:
 
-* Physicochemical
-  * Molecular Weight
-  * clogP
-  * TPSA
-  * HBD
-  * HBA
-  * Rotatable Bonds
-  * Ring Count
-* Structural
-  * ECFP4 (2048-bits)
-  * MACCS (166-bits)
+- Physicochemical
+  - Molecular Weight
+  - clogP
+  - TPSA
+  - HBD
+  - HBA
+  - Rotatable Bonds
+  - Ring Count
+- Structural
+  - ECFP4 (2048-bits)
+  - MACCS (166-bits)
 
 The final dataset was saved to ``Dataset/final/dataset.csv``
 
 **📏 Shape:**
 
-* Rows: 11803 molecules (_5901 Drugs + 5902 Non-Drugs_)
+- Rows: 11803 molecules (_5901 Drugs + 5902 Non-Drugs_)
 
-* Columns: 2223 features{ 2221 descriptors (_7 physicochemical + 2048 ECFP4 + 166 MACCS_) + Smiles + Is Drug }
+- Columns: 2223 features{ 2221 descriptors (_7 physicochemical + 2048 ECFP4 + 166 MACCS_) + Smiles + Is Drug }
 
 ## 🎛️ Preprocessing and Model Training & Evaluation
 
 ## 1️⃣ Data Preprocessing
 
-* Removed:
-  * Duplicate `SMILES`-based rows
-  * Full row duplicates
-  * Rows with `NaN` or infinite values
-* Split:
-  * `X` (features) = all except `smiles` and `Is Drug`
-  * `y` = `Is Drug` column
+- Removed:
+  - Duplicate `SMILES`-based rows
+  - Full row duplicates
+  - Rows with `NaN` or infinite values
+- Split:
+  - `X` (features) = all except `smiles` and `Is Drug`
+  - `y` = `Is Drug` column
 
 ---
 
 ## 2️⃣ Train-Test Split
 
-* 80% training, 20% testing using `train_test_split`
-* Stratified by target class
+- 80% training, 20% testing using `train_test_split`
+- Stratified by target class
 
 ---
 
 ## 3️⃣ Feature Exploration
 
-* Visualized 7 descriptors using:
-  * 📦 Boxplots
-  * 📊 Histograms with KDE
+- Visualized 7 descriptors using:
+  - 📦 Boxplots
+  - 📊 Histograms with KDE
 
 ---
 
 ## 4️⃣ Feature Transformation
 
-* Applied **log1p()** to reduce skewness for:
-  * `MW`, `TPSA`, `HBD`, `HBA`, `Rotatable Bonds`
-* Used **RobustScaler** to scale all 7 descriptors
+- Applied **log1p()** to reduce skewness for:
+  - `MW`, `TPSA`, `HBD`, `HBA`, `Rotatable Bonds`
+- Used **RobustScaler** to scale all 7 descriptors
 
 ---
 
@@ -247,46 +246,46 @@ The final dataset was saved to ``Dataset/final/dataset.csv``
 
 ### 🔹 A. Low-Variance Filtering
 
-* Removed fingerprint features with variance < 0.01 using `VarianceThreshold`
+- Removed fingerprint features with variance < 0.01 using `VarianceThreshold`
 
 ### 🔹 B. Feature Combination
 
-* Concatenated:
-  * Scaled descriptors
-  * Reduced fingerprint vectors
+- Concatenated:
+  - Scaled descriptors
+  - Reduced fingerprint vectors
 
 ### 🔹 C. Top-K Feature Selection
 
-* Selected **top 300** features via `SelectKBest` using ANOVA F-test (`f_classif`)
+- Selected **top 300** features via `SelectKBest` using ANOVA F-test (`f_classif`)
 
 ---
 
 ## 6️⃣ Cross-Validation
 
-* 5-fold cross-validation on training set
-* Scoring metric: `roc_auc`
-* Reported:
-  * Individual AUC scores
-  * Mean ± Standard Deviation
+- 5-fold cross-validation on training set
+- Scoring metric: `roc_auc`
+- Reported:
+  - Individual AUC scores
+  - Mean ± Standard Deviation
 
 ---
 
 ## 7️⃣ Final Model Training & Evaluation
 
-* Refit Logistic Regression on **entire training set**
-* Evaluated on **test set**:
-  * Accuracy
-  * ROC-AUC
-  * Precision, Recall, F1-score
-  * Confusion Matrix (Raw + Normalized)
-* Replotted ROC curve and confusion matrix
+- Refit Logistic Regression on **entire training set**
+- Evaluated on **test set**:
+  - Accuracy
+  - ROC-AUC
+  - Precision, Recall, F1-score
+  - Confusion Matrix (Raw + Normalized)
+- Replotted ROC curve and confusion matrix
 
 ---
 
 ## 8️⃣ Model Export
 
-* The final trained Logistic Regression model was saved using joblib for future use.
-* This model can later be loaded via:
+- The final trained Logistic Regression model was saved using joblib for future use.
+- This model can later be loaded via:
 
   ```python
   model = joblib.load("logreg_drug_detector.pkl")
@@ -294,16 +293,16 @@ The final dataset was saved to ``Dataset/final/dataset.csv``
 
 ## ✅ Final Outcome
 
-* End-to-end drug detection pipeline
-* Model performs well and generalizes across folds
-* Clear visualizations and evaluation metrics
-* Pipeline is modular and reproducible, and includes a saved model for deployment
+- End-to-end drug detection pipeline
+- Model performs well and generalizes across folds
+- Clear visualizations and evaluation metrics
+- Pipeline is modular and reproducible, and includes a saved model for deployment
 
 ## 📊 Final Evaluated Results on Test Set
 
-* **ROC-AUC Score**: `0.9672`
+- **ROC-AUC Score**: `0.9672`
 
-* **Classification Report**:
+- **Classification Report**:
 
   ```yaml
   ROC-AUC Score: 0.9672
