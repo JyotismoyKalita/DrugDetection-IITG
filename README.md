@@ -288,7 +288,7 @@ The final dataset was saved to ``Dataset/final/dataset.csv``
 - This model can later be loaded via:
 
   ```python
-  model = joblib.load("logreg_drug_detector.pkl")
+  model = joblib.load("final_logistic_regression_model.pkl")
   ```
 
 ## ✅ Final Outcome
