@@ -50,7 +50,10 @@ This project is a group effort and part of Summer Internship at IIT Guwahati and
     │   └── 🗀 final/
     │       └── 🗎 dataset.csv
     ├── 🗀 Model/
-    │   └── 🗎 final_logistic_regression_model.pkl
+    │   ├── 🗎 final_model.pkl
+    │   ├── 🗎 scaler.pkl
+    │   ├── 🗎 selectkbest.pkl
+    │   └── 🗎 variance_thresold.pkl
     ├── 🗎 .gitignore
     ├── 🗎 environment.yaml
     ├── 🗎 dataset.ipynb
@@ -282,13 +285,18 @@ The final dataset was saved to ``Dataset/final/dataset.csv``
 
 ---
 
-## 8️⃣ Model Export
+## 8️⃣ Model and Preprocessing objects Export
 
-- The final trained Logistic Regression model was saved using joblib for future use.
+- The final trained Logistic Regression model and the scaler, selector, variance thresold object was saved using joblib for future use.
 - This model can later be loaded via:
 
   ```python
-  model = joblib.load("final_logistic_regression_model.pkl")
+  from joblib import load
+
+  scaler = load("scaler.pkl")
+  vt = load("variance_threshold.pkl")
+  selector = load("selectkbest.pkl")
+  model = load("final_model.pkl")
   ```
 
 ## ✅ Final Outcome
@@ -296,7 +304,7 @@ The final dataset was saved to ``Dataset/final/dataset.csv``
 - End-to-end drug detection pipeline
 - Model performs well and generalizes across folds
 - Clear visualizations and evaluation metrics
-- Pipeline is modular and reproducible, and includes a saved model for deployment
+- Pipeline is modular and reproducible, and includes saved model, selector, scaler for deployment
 
 ## 📊 Final Evaluated Results on Test Set
 
