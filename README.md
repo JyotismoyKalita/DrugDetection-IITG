@@ -38,7 +38,12 @@ This project is a part of Summer Internship at IIT Guwahati and is currenty a wo
     │   │   └── 🗎 dataset.csv
     │   └── 🗀 final/
     │       └── 🗎 dataset.csv
+    ├── 🗀 Model/
+    │   └── 🗎 final_logistic_regression_model.pkl
+    ├── 🗎 .gitignore
+    ├── 🗎 environment.yaml
     ├── 🗎 dataset.ipynb
+    ├── 🗎 model.ipynb
     └── 🗎 README.md
 ```
 
@@ -188,3 +193,118 @@ The final dataset was saved to ``Dataset/final/dataset.csv``
 * Rows: 11803 molecules (_5901 Drugs + 5902 Non-Drugs_)
 
 * Columns: 2223 features{ 2221 descriptors (_7 physicochemical + 2048 ECFP4 + 166 MACCS_) + Smiles + Is Drug }
+
+## 🎛️ Preprocessing and Model Training & Evaluation
+
+## 1️⃣ Data Preprocessing
+
+* Removed:
+  * Duplicate `SMILES`-based rows
+  * Full row duplicates
+  * Rows with `NaN` or infinite values
+* Split:
+  * `X` (features) = all except `smiles` and `Is Drug`
+  * `y` = `Is Drug` column
+
+---
+
+## 2️⃣ Train-Test Split
+
+* 80% training, 20% testing using `train_test_split`
+* Stratified by target class
+
+---
+
+## 3️⃣ Feature Exploration
+
+* Visualized 7 descriptors using:
+  * 📦 Boxplots
+  * 📊 Histograms with KDE
+
+---
+
+## 4️⃣ Feature Transformation
+
+* Applied **log1p()** to reduce skewness for:
+  * `MW`, `TPSA`, `HBD`, `HBA`, `Rotatable Bonds`
+* Used **RobustScaler** to scale all 7 descriptors
+
+---
+
+## 5️⃣ Feature Selection
+
+### 🔹 A. Low-Variance Filtering
+
+* Removed fingerprint features with variance < 0.01 using `VarianceThreshold`
+
+### 🔹 B. Feature Combination
+
+* Concatenated:
+  * Scaled descriptors
+  * Reduced fingerprint vectors
+
+### 🔹 C. Top-K Feature Selection
+
+* Selected **top 300** features via `SelectKBest` using ANOVA F-test (`f_classif`)
+
+---
+
+## 6️⃣ Cross-Validation
+
+* 5-fold cross-validation on training set
+* Scoring metric: `roc_auc`
+* Reported:
+  * Individual AUC scores
+  * Mean ± Standard Deviation
+
+---
+
+## 7️⃣ Final Model Training & Evaluation
+
+* Refit Logistic Regression on **entire training set**
+* Evaluated on **test set**:
+  * Accuracy
+  * ROC-AUC
+  * Precision, Recall, F1-score
+  * Confusion Matrix (Raw + Normalized)
+* Replotted ROC curve and confusion matrix
+
+---
+
+## 8️⃣ Model Export
+
+* The final trained Logistic Regression model was saved using joblib for future use.
+* This model can later be loaded via:
+
+  ```python
+  model = joblib.load("logreg_drug_detector.pkl")
+  ```
+
+## ✅ Final Outcome
+
+* End-to-end drug detection pipeline
+* Model performs well and generalizes across folds
+* Clear visualizations and evaluation metrics
+* Pipeline is modular and reproducible, and includes a saved model for deployment
+
+## 📊 Final Evaluated Results on Test Set
+
+* **ROC-AUC Score**: `0.9672`
+
+* **Classification Report**:
+
+  ```yaml
+  ROC-AUC Score: 0.9672
+
+  Classification Report:
+
+                precision    recall  f1-score   support
+
+            0       0.92      0.90      0.91      1181
+            1       0.90      0.92      0.91      1180
+
+      accuracy                          0.91      2361
+    macro avg       0.91      0.91      0.91      2361
+  weighted avg      0.91      0.91      0.91      2361
+
+  ```
