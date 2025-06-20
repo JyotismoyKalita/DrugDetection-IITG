@@ -30,7 +30,24 @@ This project is a group effort and part of Summer Internship at IIT Guwahati and
     │   │       └── 🗎 world+in-man+clean.csv
     │   └── 🗀 negatives/
     │       ├── 🗀 gdb/
-    │       │   └── 🗎 GDB17.50000000.smi
+    │       │   ├── 🗀 CN/
+    │       │   │   ├── 🗎 1.cn.smi
+    │       │   │   •
+    │       │   │   •
+    │       │   │   •
+    │       │   │   └── 🗎 9.cn.smi
+    │       │   ├── 🗀 CO/
+    │       │   │   ├── 🗎 1.co.smi
+    │       │   │   •
+    │       │   │   •
+    │       │   │   •
+    │       │   │   └── 🗎 9.co.smi
+    │       │   └── 🗀 SaturatedHydrocarbons/
+    │       │       ├── 🗎 1.g.smi
+    │       │       •
+    │       │       •
+    │       │       •
+    │       │       └── 🗎 11.g.smi
     │       └── 🗀 zinc/
     │           ├── 🗎 CBCB.smi
     │           ├── 🗎 CFAC.smi
@@ -123,7 +140,7 @@ Drugs
 
 Non-Drugs
 
-- GDB17: [https://gdb.unibe.ch/downloads/](https://gdb.unibe.ch/downloads/) - Download the GDB17-Set(50 Million) and put it in "Data/negatives/gdb/". As the file is large it is not included in this repository.
+- GDB: [https://gdb.unibe.ch/downloads/](https://gdb.unibe.ch/downloads/)
 
 - ZINC15: [https://zinc15.docking.org/tranches/home/](https://zinc15.docking.org/tranches/home/)
 
@@ -145,9 +162,12 @@ The dataset generating tasks were performed in ``dataset.ipynb``.
 
 **Negative(non-drug):**
 
-- GDB17 (General Chemically possible Non-Drugs)
-  - Location: ``/Data/negatives/gdb/GDB17.50000000.smi``
-  - To be downloaded from given link in sources.
+- GDB
+  - Subsets: gdb13.g.tgz, gdb13.co.tgz, gdb13.cn.tgz
+  - Location: ``/Data/negatives/gdb/``
+    - ``CN/``: unpacked gdb13.cn.tgz
+    - ``CO/``: unpacked gdb13.co.tgz
+    - ``SaturatedHydrocarbons/``: unpacked gdb13.g.tgz
 
 - ZINC15
   - Filters: Clean + Lead-like
@@ -168,7 +188,7 @@ The drugs from ChEMBL and ZINC15 were combined, shuffled, and saved to `Dataset/
 
 Generating a combined Non-Drug Dataset. Total non-drugs in combined Non-drug dataset = **5902**
 
-The non-drugs from GDB17 and ZINC15 were combined, shuffled, and saved to `Dataset/negatives/dataset.csv`.
+The non-drugs from GDB and ZINC15 were combined, shuffled, and saved to `Dataset/negatives/dataset.csv`.
 
 ---
 
@@ -308,22 +328,22 @@ The final dataset was saved to ``Dataset/final/dataset.csv``
 
 ## 📊 Final Evaluated Results on Test Set
 
-- **ROC-AUC Score**: `0.9672`
+- **ROC-AUC Score**: `0.9721`
 
 - **Classification Report**:
 
   ```yaml
-  ROC-AUC Score: 0.9672
+  ROC-AUC Score: 0.9721
 
   Classification Report:
 
-                precision    recall  f1-score   support
+                  precision    recall  f1-score   support
 
-            0       0.92      0.90      0.91      1181
-            1       0.90      0.92      0.91      1180
+             0      0.91      0.91      0.91      1181
+             1      0.91      0.91      0.91      1180
 
       accuracy                          0.91      2361
-    macro avg       0.91      0.91      0.91      2361
+    macro  avg      0.91      0.91      0.91      2361
   weighted avg      0.91      0.91      0.91      2361
 
   ```
